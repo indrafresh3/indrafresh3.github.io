@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Sekolah - MA ISLAMIC CENTRE KAB. CIREBON</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- HEADER & NAVIGASI --- */
+        header {
+            background: #0056b3; /* Warna Biru Sekolah */
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700; /* Warna Emas saat di-hover */
+            transition: 0.3s;
+        }
+
+        /* --- HERO SECTION (Gambar Besar) --- */
+        .hero {
+            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffd700;
+            color: #0056b3;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e6c200;
+        }
+
+        /* --- SECTION UMUM --- */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0056b3;
+        }
+
+        /* --- TENTANG KU--- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .about-text, .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- INFORMASI / KARTU --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        /* --- RESPONSIVE (HP) --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Untuk kesederhanaan, menu disembunyikan di HP */
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">WEB-nya Indra</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">TentangKu</a></li>
+                    <li><a href="#info">Menu</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Membangun Generasi Cerdas & Berkarakter</h1>
+            <p>Bermimpilah dengan mata terbuka.</p>
+            <a href="#about" class="btn">Selamat Datang</a>
+        </div>
+    </section>
+
+    <!-- TENTANG KU -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Ku</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <!-- Gambar Placeholder (Ganti URL ini dengan gambar sekolah kamu) -->
+                    <img src="C:\Users\Islamic Center\Documents\WEB\INDRA.png"width="200" height="500"alt="indra">
+            </div>
+                <div class="about-text">
+                    <h3>Kutipan</h3>
+                    <p>"Jadilah alasan seseorang tersenyum hari ini, bahkan jika orang itu adalah dirimu sendiri."</p>
+                    <br>
+                    <h3>Visi & Misi</h3>
+                    <p><strong>Visi:</strong> Menjadi Manusia untuk Manusia.</p>
+                    <p><strong>Misi:</strong> Run to the rescue with love and peace will follow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--APA YANG ANDA BUTUHKAN ???-->
+    <section id="info" style="background-color: #e9ecef;">
+        <div class="container">
+            <h2 class="section-title">APA YANG ANDA BUTUHKAN ???</h2>
+            <div class="info-grid">
+                <div class="card">
+                    <h3>KARTU SISWA</h3>
+                    <p>Membuat kartu siswamu sendiri, langsung Jadi Loh !! silahkan dicoba.</p>
+</p><br>
+<a href="https://forms.gle/qBznF15DuWHtujqAA" class="tombol">Klik Kien</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+                </div>
+                <div class="card">
+                    <h3>KET. PENELITIAN</h3>
+                    <p>Buat Surat selesai Penelitianmu, pastikan datanya diisi dengan teliti .</p>
+                
+</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+</div>
+                <div class="card">
+                    <h3>SERTIFIKAT TKA</h3>
+                    <p>Silahkan Download sertifikat TKA TA. 2025/2026, jangan lupa masukan nisn anda.</p>
+</p><br><a href="https://asas10.my.canva.site/tka" class="tombol">Mene Kih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+</div>
+                <div class="card">
+                    <h3>Coming Soon</h3>
+                    <p>akan segera hadir menu baru untuk anda, tunggu saja kedatangannya ya</p>
+</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+                </div>
+		<div class="card">
+                    <h3>Coming Soon</h3>
+                    <p>akan segera hadir menu baru untuk anda.</p>
+</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+</div>
+		<div class="card">
+                    <h3>Coming Soon</h3>
+                    <p>akan segera hadir menu baru untuk anda.</p>
+</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+</div>
+		<div class="card">
+                    <h3>Coming Soon</h3>
+                    <p>akan segera hadir menu baru untuk anda.</p>
+</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+</div>
+		<div class="card">
+                    <h3>Coming Soon</h3>
+                    <p>akan segera hadir menu baru untuk anda.</p>
+</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
+
+	<style>
+  .tombol {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tombol:hover {
+    background-color: #004494;
+  }
+</style>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="info-grid">
+                <div class="card">
+                    <h3>Alamat</h3>
+                    <p>Jl. Tuparev No. 111 Kedawung - Cirebon</p>
+                </div>
+                <div class="card">
+                    <h3>Email</h3>
+                    <p>indrafresh3@gmail.com</p>
+                </div>
+                <div class="card">
+                    <h3>WhatsApp</h3>
+                    <p>089 8989 1284</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2023 SMA Negeri 1 Contoh. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
