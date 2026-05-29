@@ -418,7 +418,58 @@
                         <i class="fa-brands fa-youtube text-lg text-rose-600"></i>
                         <span>Official YouTube Channel</span>
                     </a>
-                    
+                    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombol YouTube Otomatis</title>
+    <style>
+        .btn-youtube {
+            display: inline-block;
+            background-color: #FF0000;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-youtube:hover {
+            background-color: #CC0000;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Video Tutorial Terbaru:</h2>
+    
+    <a id="tombolVideo" href="#" target="_blank" class="btn-youtube">
+        ▶ Tonton di YouTube
+    </a>
+
+    <script>
+        // Mengambil isi dari file youtube.txt yang ada di GitHub
+        fetch('youtube.txt')
+            .then(response => response.text())
+            .then(linkAktif => {
+                // Bersihkan spasi atau enter yang tidak sengaja terketik di file teks
+                const linkBersih = linkAktif.trim();
+                
+                // Masukkan link tersebut ke dalam atribut href tombol
+                document.getElementById('tombolVideo').href = linkBersih;
+            })
+            .catch(error => {
+                console.error('Gagal mengambil link YouTube:', error);
+            });
+    </script>
+
+</body>
+</html>
                     <!-- WhatsApp Link -->
                     <a href="https://wa.me/628989891284?text=Assalamualaikum%20Pak%20Indra%20saya%20ingin%20bertanya%20tentang%20materi%20Bahasa%20Inggris" target="_blank" class="w-full sm:w-auto bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold py-4 px-6 rounded-2xl flex items-center justify-center space-x-3 transition-all shadow-sm">
                         <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i>
