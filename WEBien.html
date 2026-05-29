@@ -1,464 +1,886 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Sekolah - MA ISLAMIC CENTRE KAB. CIREBON</title>
+    <title>English Portal - MA Islamic Centre Cirebon</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FDFCFB',
+                            100: '#FAF7F2',
+                            200: '#F3EDE2',
+                            300: '#E8DCC4',
+                            400: '#DECBA7',
+                        },
+                        sage: {
+                            50: '#F4F7F6',
+                            100: '#E9EFEF',
+                            200: '#CCDCDA',
+                            300: '#ADC4C1',
+                        },
+                        luxury: {
+                            gold: '#C5A880',
+                            darkGold: '#9E8259',
+                            charcoal: '#2D312E',
+                            stone: '#4D4F4C'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Premium Google Fonts: Playfair Display for Luxury Serif & Inter for Clean Sans-serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SheetJS for Excel Importer -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <style>
-        /* --- RESET & BASE STYLES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF7F2;
         }
-
-        a {
-            text-decoration: none;
-            color: inherit;
+        .font-serif {
+            font-family: 'Playfair Display', serif;
         }
-
-        ul {
-            list-style: none;
+        .luxury-shadow {
+            box-shadow: 0 20px 40px -15px rgba(197, 168, 128, 0.15);
         }
-
-        /* --- HEADER & NAVIGASI --- */
-        header {
-            background: #0056b3; /* Warna Biru Sekolah */
-            color: #fff;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .pastel-glow-hover:hover {
+            box-shadow: 0 15px 30px -10px rgba(197, 168, 128, 0.25);
+            border-color: rgba(197, 168, 128, 0.4);
         }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
+        /* Custom scrollbar for beautiful look */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700; /* Warna Emas saat di-hover */
-            transition: 0.3s;
-        }
-
-        /* --- HERO SECTION (Gambar Besar) --- */
-        .hero {
-            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #ffd700;
-            color: #0056b3;
-            padding: 10px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #e6c200;
-        }
-
-        /* --- SECTION UMUM --- */
-        section {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #0056b3;
-        }
-
-        /* --- TENTANG KU--- */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .about-text, .about-img {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        /* --- INFORMASI / KARTU --- */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: #0056b3;
-            margin-bottom: 10px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-        }
-
-        /* --- RESPONSIVE (HP) --- */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Untuk kesederhanaan, menu disembunyikan di HP */
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
+        ::-webkit-scrollbar-thumb {
+            background: #E8DCC4;
+            border-radius: 99px;
         }
     </style>
 </head>
-<body>
+<body class="text-luxury-charcoal flex flex-col min-h-screen selection:bg-cream-300 selection:text-luxury-charcoal">
 
-    <!-- HEADER -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">WEB-nya Indra</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#about">TentangKu</a></li>
-                    <li><a href="#info">Menu</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </nav>
+    <!-- HIGH-CLASS LUXURY HEADER -->
+    <header class="bg-cream-100/90 backdrop-blur-md border-b border-cream-200 sticky top-0 z-40 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Branding -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-luxury-gold to-luxury-darkGold flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-luxury-gold/20 border border-white/20">
+                        <i class="fa-solid fa-feather-pointed"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-wide text-luxury-charcoal font-serif leading-tight">ENGLISH PORTAL</h1>
+                        <p class="text-[10px] text-luxury-darkGold font-bold tracking-widest uppercase">MA Islamic Centre Cirebon</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#dashboard" class="text-luxury-stone hover:text-luxury-gold font-semibold transition-colors text-sm">Dashboard Materi</a>
+                    <a href="#footer-kontak" class="text-luxury-stone hover:text-luxury-gold font-semibold transition-colors text-sm">Hubungi Guru</a>
+                    <button onclick="openLoginModal()" class="bg-gradient-to-r from-[#2F4F4F] to-[#406969] hover:brightness-110 text-white px-6 py-3 rounded-2xl font-bold transition-all flex items-center space-x-2 shadow-md shadow-emerald-950/10 text-sm">
+                        <i class="fa-solid fa-user-lock"></i>
+                        <span>Panel Admin</span>
+                    </button>
+                </nav>
+
+                <!-- Mobile menu control -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <button onclick="openLoginModal()" class="p-2.5 text-luxury-gold hover:text-luxury-darkGold transition-colors" title="Admin Panel">
+                        <i class="fa-solid fa-user-lock text-xl"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2.5 text-luxury-charcoal hover:text-luxury-gold focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-100 border-b border-cream-200 px-4 pt-2 pb-6 space-y-2">
+            <a href="#dashboard" class="block px-4 py-3 rounded-xl text-luxury-stone hover:bg-cream-200 hover:text-luxury-charcoal font-semibold" onclick="toggleMobileMenu()">Dashboard Materi</a>
+            <a href="#footer-kontak" class="block px-4 py-3 rounded-xl text-luxury-stone hover:bg-cream-200 hover:text-luxury-charcoal font-semibold" onclick="toggleMobileMenu()">Hubungi Guru</a>
+            <button onclick="toggleMobileMenu(); openLoginModal()" class="w-full text-left px-4 py-3 rounded-xl text-white font-bold bg-[#2F4F4F] hover:bg-[#406969] flex items-center space-x-2">
+                <i class="fa-solid fa-user-lock"></i>
+                <span>Masuk Panel Admin</span>
+            </button>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Membangun Generasi Cerdas & Berkarakter</h1>
-            <p>Bermimpilah dengan mata terbuka.</p>
-            <a href="#about" class="btn">Selamat Datang</a>
+    <!-- SOPHISTICATED HERO SECTION -->
+    <section class="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-cream-100 via-sage-50 to-cream-100">
+        <!-- Floating artistic delicate circles for elegant texture -->
+        <div class="absolute top-10 left-10 w-72 h-72 bg-cream-300/30 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-sage-200/40 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-white border border-cream-300 text-luxury-darkGold uppercase tracking-widest mb-6 shadow-sm">
+                ✨ High-Class Learning Environment
+            </span>
+            
+            <h2 class="text-4xl sm:text-6xl font-extrabold text-luxury-charcoal font-serif tracking-tight leading-tight max-w-4xl mx-auto">
+                Discover the Grace of <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-luxury-darkGold via-[#8c7453] to-luxury-gold italic font-normal">English Literature</span>
+            </h2>
+            
+            <p class="text-luxury-stone text-base sm:text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+                Selamat datang di platform digital resmi pembelajaran Bahasa Inggris MA Islamic Centre Cirebon. Portal ini dirancang khusus untuk memfasilitasi akses materi ajar yang sistematis dan modern.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 pt-10">
+                <a href="#dashboard" class="bg-gradient-to-r from-luxury-gold to-luxury-darkGold hover:brightness-110 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-luxury-gold/20 transition-all flex items-center space-x-2 border border-white/20">
+                    <i class="fa-solid fa-circle-play"></i>
+                    <span>Akses Materi Kelas</span>
+                </a>
+                <a href="#footer-kontak" class="bg-white hover:bg-cream-100 border border-cream-300 text-luxury-charcoal font-bold px-8 py-4 rounded-2xl shadow-sm transition-all flex items-center space-x-2">
+                    <span>Hubungi Kontak Resmi</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- TENTANG KU -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">Tentang Ku</h2>
-            <div class="about-content">
-                <div class="about-img">
-                    <!-- Gambar Placeholder (Ganti URL ini dengan gambar sekolah kamu) -->
-					<img src="https://github.com/indrafresh3/indrafresh3.github.io/blob/a310639ebbba97ce22ef89a5e6a4d0831acab0f8/INDRA.png" alt="indra" width="300">
+    <!-- MAIN STUDENT DASHBOARD -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16" id="dashboard">
+        
+        <!-- Welcome Title & Search Column -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
+            <div>
+                <h3 class="text-3xl font-bold font-serif text-luxury-charcoal flex items-center gap-3">
+                    <i class="fa-solid fa-palette text-luxury-gold"></i>
+                    <span>Daftar Modul Pembelajaran</span>
+                </h3>
+                <p class="text-luxury-stone text-sm mt-1">Gunakan saringan di bawah ini untuk menyortir kurikulum pelajaran sesuai tingkatan kelas.</p>
             </div>
-                <div class="about-text">
-                    <h3>Kutipan</h3>
-                    <p>"Jadilah alasan seseorang tersenyum hari ini, bahkan jika orang itu adalah dirimu sendiri."</p>
-                    <br>
-                    <h3>Visi & Misi</h3>
-                    <p><strong>Visi:</strong> Menjadi Manusia untuk Manusia.</p>
-                    <p><strong>Misi:</strong> Run to the rescue with love and peace will follow.</p>
+
+            <!-- Search Field and Cloud Indicator -->
+            <div class="flex flex-col sm:flex-row gap-4 items-center w-full lg:w-auto">
+                <div id="sync-indicator" class="hidden text-xs bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-2.5 rounded-2xl flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <span class="font-bold">Google Sheet Terkoneksi</span>
+                </div>
+                <!-- Search -->
+                <div class="relative w-full sm:w-80">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-luxury-gold">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="renderDashboard()" placeholder="Cari materi pembelajaran..." class="w-full pl-11 pr-4 py-3.5 bg-white border border-cream-300 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-luxury-gold text-luxury-charcoal shadow-sm transition-all">
                 </div>
             </div>
         </div>
-    </section>
 
-    <!--APA YANG ANDA BUTUHKAN ???-->
-    <section id="info" style="background-color: #e9ecef;">
-        <div class="container">
-            <h2 class="section-title">APA YANG ANDA BUTUHKAN ???</h2>
-            <div class="info-grid">
-                <div class="card">
-                    <h3>KARTU SISWA</h3>
-                    <p>Membuat kartu siswamu sendiri, langsung Jadi Loh !! silahkan dicoba.</p>
-</p><br>
-<a href="https://forms.gle/qBznF15DuWHtujqAA" class="tombol">Klik Kien</a>
+        <!-- Pastel-Styled Class Tabs -->
+        <div class="flex items-center space-x-2 bg-cream-200/50 border border-cream-300/60 p-2 rounded-2xl w-full max-w-lg mb-12 overflow-x-auto no-scrollbar">
+            <button onclick="setFilterClass('ALL')" id="tab-ALL" class="whitespace-nowrap px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 bg-white text-luxury-charcoal shadow-sm border border-cream-300">
+                Semua Kelas
+            </button>
+            <button onclick="setFilterClass('X')" id="tab-X" class="whitespace-nowrap px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 text-luxury-stone hover:bg-white/40">
+                Kelas X
+            </button>
+            <button onclick="setFilterClass('XI')" id="tab-XI" class="whitespace-nowrap px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 text-luxury-stone hover:bg-white/40">
+                Kelas XI
+            </button>
+            <button onclick="setFilterClass('XII')" id="tab-XII" class="whitespace-nowrap px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 text-luxury-stone hover:bg-white/40">
+                Kelas XII
+            </button>
+        </div>
 
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
+        <!-- Card Grid container -->
+        <div id="lessons-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Programmatically populated by JS -->
+        </div>
+
+        <!-- No Data State display -->
+        <div id="no-items" class="hidden text-center py-24 bg-white rounded-3xl border border-dashed border-cream-300 luxury-shadow">
+            <div class="text-luxury-gold text-7xl mb-4">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h4 class="text-xl font-bold font-serif text-luxury-charcoal">Materi Belum Tersedia</h4>
+            <p class="text-luxury-stone text-sm max-w-md mx-auto mt-2 leading-relaxed">Materi belum dimasukkan oleh Admin, silakan masuk ke Panel Admin untuk menambahkan modul pembelajaran secara manual atau impor dari Excel.</p>
+        </div>
+
+    </main>
+
+    <!-- MODAL: LOGIN ADMIN (INDRA / KUDUINDRA) -->
+    <div id="login-modal" class="fixed inset-0 bg-luxury-charcoal/40 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-cream-50 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-cream-300 transform transition-all">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-[#2F4F4F] to-[#406969] px-6 py-5 text-white flex justify-between items-center border-b border-cream-200">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-shield-halved text-cream-300"></i>
+                    <h3 class="font-bold text-lg font-serif">Otorisasi Guru</h3>
                 </div>
-                <div class="card">
-                    <h3>KET. PENELITIAN</h3>
-                    <p>Buat Surat selesai Penelitianmu, pastikan datanya diisi dengan teliti .</p>
+                <button onclick="closeLoginModal()" class="text-cream-100 hover:text-white hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <!-- Form -->
+            <div class="p-6 space-y-5">
+                <div id="login-error" class="hidden bg-rose-50 text-rose-700 border border-rose-200 text-xs font-semibold p-4 rounded-xl flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-exclamation text-base"></i>
+                    <span>Identitas masuk (username/password) tidak valid!</span>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-luxury-stone uppercase tracking-wider mb-2">Username Guru</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-luxury-gold">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </span>
+                        <input type="text" id="login-username" placeholder="Username" class="w-full pl-10 pr-4 py-3 bg-white border border-cream-300 rounded-xl text-sm text-luxury-charcoal focus:outline-none focus:ring-2 focus:ring-luxury-gold shadow-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-luxury-stone uppercase tracking-wider mb-2">Password Sandi</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-luxury-gold">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input type="password" id="login-password" placeholder="Sandi" class="w-full pl-10 pr-4 py-3 bg-white border border-cream-300 rounded-xl text-sm text-luxury-charcoal focus:outline-none focus:ring-2 focus:ring-luxury-gold shadow-sm">
+                    </div>
+                </div>
+                <button onclick="attemptLogin()" class="w-full bg-gradient-to-r from-luxury-gold to-luxury-darkGold hover:brightness-110 text-white font-bold py-4 rounded-xl transition-all mt-4 flex items-center justify-center space-x-2 shadow-md">
+                    <span>Masuk Ke Panel Admin</span>
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL MODAL: ADMIN CONTROL WORKSPACE -->
+    <div id="admin-panel" class="fixed inset-0 bg-[#FAF7F2] z-50 flex flex-col hidden overflow-y-auto">
+        <!-- Top bar -->
+        <header class="bg-white border-b border-cream-300 sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <span class="w-12 h-12 bg-gradient-to-tr from-[#2F4F4F] to-[#406969] text-white font-bold rounded-xl flex items-center justify-center shadow-md">
+                        <i class="fa-solid fa-user-gear text-lg"></i>
+                    </span>
+                    <div>
+                        <h2 class="text-base font-bold text-luxury-charcoal font-serif">KONSOL ADMINISTRATOR GURU</h2>
+                        <p class="text-[10px] text-luxury-darkGold font-bold uppercase tracking-wider">Modul Pengelolaan Pembelajaran (Indra, S.Pd.)</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="logoutAdmin()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold px-5 py-3 rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Tutup Panel</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Admin Workspace Grid -->
+        <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left inputs panel -->
+            <div class="lg:col-span-5 space-y-6">
+
+                <!-- Manual Lesson form insertion -->
+                <div class="bg-white border border-cream-300 rounded-3xl p-6 space-y-4 shadow-sm">
+                    <h3 class="text-md font-bold font-serif text-luxury-charcoal border-b border-cream-200 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-luxury-gold"></i>
+                        <span>Input Mata Pelajaran Baru</span>
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-luxury-stone mb-1.5">Nama Mata Pelajaran</label>
+                            <input type="text" id="input-title" placeholder="Contoh: Narrative Text - Folklore" class="w-full px-4 py-3 bg-cream-50 border border-cream-300 rounded-xl text-xs text-luxury-charcoal focus:outline-none focus:ring-2 focus:ring-luxury-gold shadow-inner">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-luxury-stone mb-1.5">Link Gambar (URL)</label>
+                            <input type="text" id="input-image" placeholder="https://images.unsplash.com/..." class="w-full px-4 py-3 bg-cream-50 border border-cream-300 rounded-xl text-xs text-luxury-charcoal focus:outline-none focus:ring-2 focus:ring-luxury-gold shadow-inner">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-luxury-stone mb-1.5">Link Media Pembelajaran</label>
+                            <input type="text" id="input-link" placeholder="https://youtube.com/..." class="w-full px-4 py-3 bg-cream-50 border border-cream-300 rounded-xl text-xs text-luxury-charcoal focus:outline-none focus:ring-2 focus:ring-luxury-gold shadow-inner">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-luxury-stone mb-1.5">Pilih Tingkatan Kelas</label>
+                            <select id="input-class" class="w-full px-4 py-3 bg-cream-50 border border-cream-300 rounded-xl text-xs text-luxury-charcoal focus:outline-none focus:ring-2 focus:ring-luxury-gold shadow-sm font-semibold">
+                                <option value="X">Kelas X</option>
+                                <option value="XI">Kelas XI</option>
+                                <option value="XII">Kelas XII</option>
+                            </select>
+                        </div>
+
+                        <button onclick="saveManualLesson()" class="w-full bg-gradient-to-r from-luxury-gold to-luxury-darkGold hover:brightness-110 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-solid fa-floppy-disk text-base"></i>
+                            <span>Simpan Materi Pembelajaran</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Excel Importer -->
+                <div class="bg-white border border-cream-300 rounded-3xl p-6 space-y-4 shadow-sm">
+                    <h3 class="text-md font-bold font-serif text-luxury-charcoal border-b border-cream-200 pb-3 flex items-center justify-between">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-file-excel text-emerald-700"></i>
+                            <span>Import via File Excel</span>
+                        </span>
+                        <span class="bg-sage-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-sage-200">Express</span>
+                    </h3>
+
+                    <p class="text-xs text-luxury-stone leading-relaxed">
+                        Impor banyak modul sekaligus. Unduh template formal kami di bawah ini, sesuaikan isi barisnya, lalu unggah kembali berkasnya.
+                    </p>
+
+                    <button onclick="downloadExcelTemplate()" class="w-full bg-cream-50 hover:bg-cream-100 text-luxury-charcoal border border-cream-300 text-xs font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-sm">
+                        <i class="fa-solid fa-file-arrow-down text-luxury-gold"></i>
+                        <span>Unduh Template Excel</span>
+                    </button>
+
+                    <div class="border-2 border-dashed border-cream-300 hover:border-luxury-gold rounded-2xl p-6 text-center cursor-pointer bg-cream-50 hover:bg-white relative transition-all" onclick="document.getElementById('excel-file-input').click()">
+                        <input type="file" id="excel-file-input" accept=".xlsx, .xls" class="hidden" onchange="handleExcelUpload(event)">
+                        <div class="text-luxury-gold text-3xl mb-2">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <span class="block text-xs font-bold text-luxury-charcoal">Klik / Seret File Excel di Sini</span>
+                        <span class="block text-[10px] text-luxury-stone mt-1">Mendukung file ekstensi .xlsx dan .xls</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right list panel -->
+            <div class="lg:col-span-7 bg-white border border-cream-300 rounded-3xl p-6 flex flex-col shadow-sm">
+                <div class="flex justify-between items-center border-b border-cream-200 pb-4 mb-5">
+                    <h3 class="text-md font-bold font-serif text-luxury-charcoal flex items-center gap-2">
+                        <i class="fa-solid fa-bars-progress text-luxury-gold"></i>
+                        <span>Manajemen Modul Pembelajaran</span>
+                    </h3>
+                    <span id="admin-counter" class="bg-cream-100 border border-cream-200 text-luxury-charcoal text-xs font-bold px-4 py-1.5 rounded-full">
+                        Total: 0 Materi
+                    </span>
+                </div>
+
+                <!-- Lessons management table -->
+                <div class="flex-grow overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-cream-50 text-luxury-darkGold text-[10px] uppercase font-bold tracking-wider border-b border-cream-200">
+                                <th class="py-4 px-4">Deskripsi Pembelajaran</th>
+                                <th class="py-4 px-4 text-center">Kelas</th>
+                                <th class="py-4 px-4 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="text-xs">
+                            <!-- Populated in JS -->
+                        </tbody>
+                    </table>
+
+                    <div id="admin-no-data" class="hidden text-center py-16 text-luxury-stone">
+                        <i class="fa-solid fa-database text-4xl mb-2 text-cream-300"></i>
+                        <p class="text-xs font-semibold">Belum terdapat modul. Silakan input atau impor file Excel Anda!</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- HIGH-CLASS LUXURY FOOTER -->
+    <footer class="bg-cream-100 border-t border-cream-200 mt-auto py-12" id="footer-kontak">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-cream-200 pb-8 mb-8">
                 
-</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
-
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
-</div>
-                <div class="card">
-                    <h3>SERTIFIKAT TKA</h3>
-                    <p>Silahkan Download sertifikat TKA TA. 2025/2026, jangan lupa masukan nisn anda.</p>
-</p><br><a href="https://asas10.my.canva.site/tka" class="tombol">Mene Kih</a>
-
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
-</div>
-                <div class="card">
-                    <h3>ABSENSI SISWA</h3>
-                    <p>lakukan absenmu setiap hari, tetap rajin ya, semangat !!! demi masa depan.</p>
-</p><br><a href="https://gemini.google.com/share/6ccc062794e4" class="tombol">Klik Inih</a>
-
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
+                <!-- Information -->
+                <div class="md:col-span-5 space-y-4 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start space-x-3">
+                        <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-luxury-gold to-luxury-darkGold text-white font-bold flex items-center justify-center shadow-md">MA</span>
+                        <span class="font-bold text-luxury-charcoal text-lg font-serif tracking-wide">MA ISLAMIC CENTRE CIREBON</span>
+                    </div>
+                    <p class="text-xs text-luxury-stone leading-relaxed max-w-sm mx-auto md:mx-0">
+                        Kabupaten Cirebon, Jawa Barat. Menyelenggarakan pendidikan modern berbasis akhlak mulia dan kompetensi global di era digital.
+                    </p>
                 </div>
-		<div class="card">
-                    <h3>Coming Soon</h3>
-                    <p>akan segera hadir menu baru untuk anda.</p>
-</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
 
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
-</div>
-		<div class="card">
-                    <h3>Coming Soon</h3>
-                    <p>akan segera hadir menu baru untuk anda.</p>
-</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
-
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
-</div>
-		<div class="card">
-                    <h3>Coming Soon</h3>
-                    <p>akan segera hadir menu baru untuk anda.</p>
-</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
-
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
-</div>
-		<div class="card">
-                    <h3>Coming Soon</h3>
-                    <p>akan segera hadir menu baru untuk anda.</p>
-</p><br><a href="https://forms.gle/h3t1MKXS2GcY9sWm6" class="tombol">Disini Nih</a>
-
-	<style>
-  .tombol {
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 5px 30px;
-    border-radius: 7px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  .tombol:hover {
-    background-color: #004494;
-  }
-</style>
+                <!-- Integrated official interactive links (WA & YouTube in Footer) -->
+                <div class="md:col-span-7 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-4">
+                    <!-- YouTube link -->
+                    <a href="https:/www.youtube.com/@indrafresh5234" target="_blank" class="w-full sm:w-auto bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-800 text-xs font-bold py-4 px-6 rounded-2xl flex items-center justify-center space-x-3 transition-all shadow-sm">
+                        <i class="fa-brands fa-youtube text-lg text-rose-600"></i>
+                        <span>Official YouTube Channel</span>
+                    </a>
+                    
+                    <!-- WhatsApp Link -->
+                    <a href="https://wa.me/628989891284?text=Assalamualaikum%20Pak%20Indra%20saya%20ingin%20bertanya%20tentang%20materi%20Bahasa%20Inggris" target="_blank" class="w-full sm:w-auto bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold py-4 px-6 rounded-2xl flex items-center justify-center space-x-3 transition-all shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-lg text-emerald-600"></i>
+                        <span>Hubungi Pak Indra via WhatsApp</span>
+                    </a>
                 </div>
+
+            </div>
+
+            <!-- Copyright area -->
+            <div class="flex flex-col sm:flex-row items-center justify-between text-luxury-stone text-xs gap-4 text-center">
+                <p>&copy; 2026 MA Islamic Centre Kab. Cirebon. All rights reserved.</p>
+                <p>Designed for Professional Educators &bull; English Specialist: Indra, S.Pd.</p>
             </div>
         </div>
-    </section>
-
-    <!-- KONTAK -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Hubungi Kami</h2>
-            <div class="info-grid">
-                <div class="card">
-                    <h3>Alamat</h3>
-                    <p>Jl. Tuparev No. 111 Kedawung - Cirebon</p>
-                </div>
-                <div class="card">
-                    <h3>Email</h3>
-                    <p>indrafresh3@gmail.com</p>
-                </div>
-                <div class="card">
-                    <h3>WhatsApp</h3>
-                    <p>089 8989 1284</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 MA Islamic Centre Cirebon. All Rights Reserved.</p>
     </footer>
 
+    <!-- LOGICAL ENGINE JAVASCRIPT -->
+    <script>
+        // =========================================================================
+        // JEMBATAN KONEKSI GOOGLE APPS SCRIPT (SINKRONISASI SHEET OTOMATIS)
+        // =========================================================================
+        // SALIN DAN TEMPELKAN TAUTAN /exec ANDA DI SINI UNTUK KONEKSI PERMANEN:
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwHPkaSnW8K8w_VmPMmJIBcZRbdYbHeK6JWYkchl_k8HXQ81rrrPdjuwjHd0N_jMeSx/exec";
+        // =========================================================================
+
+        let lessons = [];
+        let currentFilterClass = "ALL";
+        let defaultImagePlaceholder = "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop";
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Helper function to return active Apps Script API url
+        function getApiUrl() {
+            if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== "TEMPEL_URL_EXEC_GOOGLE_APPS_SCRIPT_DI_SINI") {
+                return APPS_SCRIPT_URL.trim();
+            }
+            return "";
+        }
+
+        // Read/Pull lessons from Cloud sheets or Local Fallback
+        async function loadAllLessons() {
+            const url = getApiUrl();
+            const syncIndicator = document.getElementById('sync-indicator');
+
+            if (!url) {
+                // If no cloud URL is set, fall back to localStorage (clean slate initially, no samples)
+                syncIndicator.classList.add('hidden');
+                const storedLocal = localStorage.getItem('LOCAL_LESSONS_DATA_V2');
+                if (storedLocal) {
+                    lessons = JSON.parse(storedLocal);
+                } else {
+                    lessons = []; // Clean start with no samples
+                    localStorage.setItem('LOCAL_LESSONS_DATA_V2', JSON.stringify(lessons));
+                }
+                renderDashboard();
+                renderAdminPanel();
+                return;
+            }
+
+            try {
+                syncIndicator.classList.remove('hidden');
+                const response = await fetch(`${url}?action=read`);
+                const data = await response.json();
+                if (data && data.status === "success") {
+                    lessons = data.data;
+                    renderDashboard();
+                    renderAdminPanel();
+                } else {
+                    throw new Error("Format cloud data tidak valid");
+                }
+            } catch (error) {
+                console.error("Sheets connection failed:", error);
+                showToast("Koneksi cloud gagal. Menggunakan database lokal sementara.", "error");
+                const storedLocal = localStorage.getItem('LOCAL_LESSONS_DATA_V2') || "[]";
+                lessons = JSON.parse(storedLocal);
+                renderDashboard();
+                renderAdminPanel();
+            }
+        }
+
+        // Otorisasi Admin login controller
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('login-username').focus();
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+            document.getElementById('login-username').value = "";
+            document.getElementById('login-password').value = "";
+        }
+
+        function attemptLogin() {
+            const userIn = document.getElementById('login-username').value.trim();
+            const passIn = document.getElementById('login-password').value;
+            const errorBanner = document.getElementById('login-error');
+
+            if (userIn === "indra" && passIn === "kuduindra") {
+                closeLoginModal();
+                showAdminPanel();
+            } else {
+                errorBanner.classList.remove('hidden');
+            }
+        }
+
+        function showAdminPanel() {
+            document.getElementById('admin-panel').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            renderAdminPanel();
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            loadAllLessons(); 
+        }
+
+        // Filtering & Sorting Visual UI Renders
+        function setFilterClass(className) {
+            currentFilterClass = className;
+            const classes = ["ALL", "X", "XI", "XII"];
+            classes.forEach(c => {
+                const btn = document.getElementById(`tab-${c}`);
+                if (c === className) {
+                    btn.className = "whitespace-nowrap px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 bg-white text-luxury-charcoal shadow-sm border border-cream-300";
+                } else {
+                    btn.className = "whitespace-nowrap px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 text-luxury-stone hover:bg-white/40";
+                }
+            });
+            renderDashboard();
+        }
+
+        function renderDashboard() {
+            const grid = document.getElementById('lessons-grid');
+            const noItems = document.getElementById('no-items');
+            const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
+
+            grid.innerHTML = "";
+
+            const filtered = lessons.filter(l => {
+                const matchesClass = (currentFilterClass === "ALL" || l.class.toString().toUpperCase().trim() === currentFilterClass);
+                const matchesSearch = l.name.toLowerCase().includes(searchVal);
+                return matchesClass && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                noItems.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            noItems.classList.add('hidden');
+
+            filtered.forEach(lesson => {
+                const bannerImg = (lesson.image && lesson.image.trim() !== "") ? lesson.image : defaultImagePlaceholder;
+                const card = document.createElement('div');
+                card.className = "bg-white border border-cream-200 rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1.5 group pastel-glow-hover flex flex-col justify-between";
+
+                card.innerHTML = `
+                    <div>
+                        <!-- Image Container -->
+                        <div class="h-48 relative overflow-hidden bg-cream-100">
+                            <img src="${bannerImg}" alt="${lesson.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='${defaultImagePlaceholder}'">
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/90 backdrop-blur-sm text-luxury-darkGold font-bold px-3.5 py-1.5 rounded-full text-[10px] shadow-sm uppercase tracking-wider border border-cream-200">
+                                    Kelas ${lesson.class}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card info content -->
+                        <div class="p-6 space-y-2">
+                            <span class="text-[10px] text-luxury-gold font-extrabold uppercase tracking-widest block">English Subject</span>
+                            <h4 class="text-base font-bold text-luxury-charcoal font-serif leading-snug group-hover:text-luxury-darkGold transition-colors line-clamp-2">
+                                ${lesson.name}
+                            </h4>
+                        </div>
+                    </div>
+
+                    <!-- CTA action button -->
+                    <div class="p-6 pt-0">
+                        <a href="${lesson.link}" target="_blank" class="w-full bg-cream-100 hover:bg-[#2F4F4F] border border-cream-300 hover:border-[#2F4F4F] text-luxury-charcoal hover:text-white text-xs font-bold py-3.5 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-circle-play text-base"></i>
+                            <span>Mulai Pembelajaran</span>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderAdminPanel() {
+            const tableBody = document.getElementById('admin-table-body');
+            const noData = document.getElementById('admin-no-data');
+            const counter = document.getElementById('admin-counter');
+
+            tableBody.innerHTML = "";
+            counter.innerText = `Total: ${lessons.length} Materi`;
+
+            if (lessons.length === 0) {
+                noData.classList.remove('hidden');
+                return;
+            }
+
+            noData.classList.add('hidden');
+
+            lessons.forEach(l => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-cream-200 hover:bg-cream-50 transition-colors";
+
+                tr.innerHTML = `
+                    <td class="py-4 px-4 flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl overflow-hidden bg-cream-100 shrink-0 border border-cream-200">
+                            <img src="${l.image || defaultImagePlaceholder}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='${defaultImagePlaceholder}'">
+                        </div>
+                        <div>
+                            <p class="font-bold text-luxury-charcoal font-serif text-sm">${l.name}</p>
+                            <a href="${l.link}" target="_blank" class="text-[10px] text-luxury-darkGold hover:underline font-bold flex items-center space-x-1 mt-0.5">
+                                <i class="fa-solid fa-link"></i>
+                                <span>Tinjau Sumber Pembelajaran</span>
+                            </a>
+                        </div>
+                    </td>
+                    <td class="py-4 px-4 text-center">
+                        <span class="bg-cream-100 text-luxury-charcoal text-[10px] font-extrabold px-3 py-1.5 rounded-full border border-cream-200">
+                            Kelas ${l.class}
+                        </span>
+                    </td>
+                    <td class="py-4 px-4 text-right">
+                        <button onclick="deleteLesson(${l.id})" class="text-rose-700 hover:text-white bg-rose-50 hover:bg-rose-700 border border-rose-100 p-2.5 rounded-xl transition-all shadow-sm" title="Hapus Modul">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Insert Manual Lesson Logic
+        async function saveManualLesson() {
+            const name = document.getElementById('input-title').value.trim();
+            const image = document.getElementById('input-image').value.trim();
+            const link = document.getElementById('input-link').value.trim();
+            const cls = document.getElementById('input-class').value;
+
+            if (name === "" || link === "") {
+                showToast("Lengkapi judul materi dan link pembelajaran!", "error");
+                return;
+            }
+
+            const newId = lessons.length > 0 ? Math.max(...lessons.map(l => Number(l.id) || 0)) + 1 : 1;
+            const newLesson = { id: newId, name, image, link, class: cls };
+
+            const url = getApiUrl();
+            if (!url) {
+                lessons.push(newLesson);
+                localStorage.setItem('LOCAL_LESSONS_DATA_V2', JSON.stringify(lessons));
+                renderAdminPanel();
+                renderDashboard();
+                showToast("Modul berhasil disimpan dalam basis data lokal sementara!", "success");
+            } else {
+                showToast("Mengirimkan modul ke Google Sheets...", "success");
+                try {
+                    const response = await fetch(`${url}?action=create`, {
+                        method: "POST",
+                        body: JSON.stringify(newLesson)
+                    });
+                    const res = await response.json();
+                    if (res.status === "success") {
+                        showToast("Modul berhasil diunggah permanen ke Google Sheets!", "success");
+                        loadAllLessons();
+                    } else {
+                        showToast("Unggah Google Sheets gagal. Periksa Script Apps.", "error");
+                    }
+                } catch (error) {
+                    showToast("Sambungan Cloud bermasalah. Menyimpan lokal.", "error");
+                }
+            }
+
+            // Reset Fields
+            document.getElementById('input-title').value = "";
+            document.getElementById('input-image').value = "";
+            document.getElementById('input-link').value = "";
+        }
+
+        // Delete Course Operation
+        async function deleteLesson(id) {
+            const url = getApiUrl();
+            if (!url) {
+                lessons = lessons.filter(l => l.id !== id);
+                localStorage.setItem('LOCAL_LESSONS_DATA_V2', JSON.stringify(lessons));
+                renderAdminPanel();
+                renderDashboard();
+                showToast("Modul berhasil terhapus dari basis data lokal!", "success");
+            } else {
+                showToast("Menghapus baris dari Google Sheets...", "success");
+                try {
+                    const response = await fetch(`${url}?action=delete`, {
+                        method: "POST",
+                        body: JSON.stringify({ id: id })
+                    });
+                    const res = await response.json();
+                    if (res.status === "success") {
+                        showToast("Modul berhasil dihapus secara permanen dari Sheets!", "success");
+                        loadAllLessons();
+                    } else {
+                        showToast("Penghapusan gagal pada sisi cloud server.", "error");
+                    }
+                } catch (error) {
+                    showToast("Kegagalan Cloud saat proses penghapusan data.", "error");
+                }
+            }
+        }
+
+        // Excel file generator & downloader
+        function downloadExcelTemplate() {
+            const sampleData = [
+                {
+                    "ID (Biarkan Urut / Kosong)": 1,
+                    "Nama Mata Pelajaran": "Expressing Gratitude and Appreciation Positively",
+                    "Link Gambar (URL)": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?q=80&w=600",
+                    "Link Pembelajaran (URL)": "https://www.youtube.com/watch?v=XWcW9t6W_U8",
+                    "Kelas (Pilih: X, XI, atau XII)": "X"
+                },
+                {
+                    "ID (Biarkan Urut / Kosong)": 2,
+                    "Nama Mata Pelajaran": "Analytical Exposition Essay Writing and Arguments",
+                    "Link Gambar (URL)": "",
+                    "Link Pembelajaran (URL)": "https://www.youtube.com/watch?v=Fie6-l9p9j4",
+                    "Kelas (Pilih: X, XI, atau XII)": "XI"
+                }
+            ];
+
+            const worksheet = XLSX.utils.json_to_sheet(sampleData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Syllabus");
+            XLSX.writeFile(workbook, "Syllabus_English_Template_MAIC.xlsx");
+            showToast("Templat formulir Excel berhasil diunduh!", "success");
+        }
+
+        // Excel upload & parser
+        function handleExcelUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const sheetName = workbook.SheetNames[0];
+                    const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+                    if (jsonData.length === 0) {
+                        showToast("Berkas unggah Excel tidak memiliki baris data!", "error");
+                        return;
+                    }
+
+                    showToast("Sedang mengurai file excel...", "success");
+
+                    let lastId = lessons.length > 0 ? Math.max(...lessons.map(l => Number(l.id) || 0)) : 0;
+                    const url = getApiUrl();
+                    let importedLessons = [];
+
+                    jsonData.forEach(row => {
+                        const rawName = row["Nama Mata Pelajaran"];
+                        const rawImg = row["Link Gambar (URL)"] || "";
+                        const rawLink = row["Link Pembelajaran (URL)"];
+                        let rawClass = row["Kelas (Pilih: X, XI, atau XII)"] || "X";
+
+                        rawClass = rawClass.toString().toUpperCase().trim();
+                        if (!["X", "XI", "XII"].includes(rawClass)) {
+                            rawClass = "X";
+                        }
+
+                        if (rawName && rawLink) {
+                            lastId++;
+                            importedLessons.push({
+                                id: lastId,
+                                name: rawName.toString().trim(),
+                                image: rawImg.toString().trim(),
+                                link: rawLink.toString().trim(),
+                                class: rawClass
+                            });
+                        }
+                    });
+
+                    if (importedLessons.length === 0) {
+                        showToast("Format kolom Excel tidak sesuai template!", "error");
+                        return;
+                    }
+
+                    if (!url) {
+                        lessons = [...lessons, ...importedLessons];
+                        localStorage.setItem('LOCAL_LESSONS_DATA_V2', JSON.stringify(lessons));
+                        renderAdminPanel();
+                        renderDashboard();
+                        showToast(`Selesai! ${importedLessons.length} materi ditambahkan secara lokal.`, "success");
+                    } else {
+                        let successCount = 0;
+                        for (let lesson of importedLessons) {
+                            try {
+                                await fetch(`${url}?action=create`, {
+                                    method: "POST",
+                                    body: JSON.stringify(lesson)
+                                });
+                                successCount++;
+                            } catch (err) {
+                                console.error("Cloud insert issue:", lesson, err);
+                            }
+                        }
+                        showToast(`Selesai! ${successCount} dari ${importedLessons.length} item tersinkronisasi ke Google Sheets.`, "success");
+                        loadAllLessons();
+                    }
+
+                } catch (err) {
+                    console.error(err);
+                    showToast("Kesalahan saat mengurai file berkas Excel!", "error");
+                }
+                
+                document.getElementById('excel-file-input').value = "";
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // Custom Toast Box
+        function showToast(message, type = "success") {
+            const existingToast = document.getElementById('app-toast');
+            if (existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.id = "app-toast";
+            
+            const bgClass = type === "success" ? "bg-cream-100 border-luxury-gold text-luxury-charcoal" : "bg-rose-50 border-rose-200 text-rose-800";
+            const icon = type === "success" ? '<i class="fa-solid fa-circle-check text-luxury-gold text-base"></i>' : '<i class="fa-solid fa-triangle-exclamation text-rose-600 text-base"></i>';
+
+            toast.className = `fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-2xl border text-xs font-bold shadow-xl flex items-center space-x-3 transition-all ${bgClass}`;
+            toast.innerHTML = `${icon} <span>${message}</span>`;
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        }
+
+        // Kickstart visual execution
+        window.onload = function() {
+            loadAllLessons();
+        }
+    </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
