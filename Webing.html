@@ -413,46 +413,50 @@
                 <!-- Integrated official interactive links (WA & YouTube in Footer) -->
                 <div class="md:col-span-7 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-4">
                    <html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tombol YouTube Otomatis</title>
+    <title>Tombol Menuju YouTube</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+
+        /* Desain Tombol YouTube */
         .btn-youtube {
-            display: inline-block;
-            background-color: #FF0000;
-            color: #FFFFFF;
+            display: inline-flex;
+            align-items: center;
+            background-color: #FF0000; /* Warna merah YouTube */
+            color: white;
+            text-decoration: none; /* Menghilangkan garis bawah link */
             padding: 12px 24px;
             font-size: 16px;
             font-weight: bold;
-            font-family: Arial, sans-serif;
-            text-decoration: none;
-            border-radius: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 50px; /* Membuat tombol lonjong/rounded */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
+        /* Efek saat tombol disentuh kursor (hover) */
         .btn-youtube:hover {
-            background-color: #CC0000;
-            transform: scale(1.05);
+            background-color: #CC0000; /* Merah agak gelap */
+            transform: scale(1.05); /* Tombol sedikit membesar */
         }
     </style>
 </head>
 <body>
-    <script>
-        // Mengambil isi dari file youtube.txt yang ada di GitHub
-        fetch('youtube.txt')
-            .then(response => response.text())
-            .then(linkAktif => {
-                // Bersihkan spasi atau enter yang tidak sengaja terketik di file teks
-                const linkBersih = linkAktif.trim();
-                
-                // Masukkan link tersebut ke dalam atribut href tombol
-                document.getElementById('tombolVideo').href = linkBersih;
-            })
-            .catch(error => {
-                console.error('Gagal mengambil link YouTube:', error);
-            });
-    </script>
+
+    <a href="https://www.youtube.com/@indrafresh5234" target="_blank" class="btn-youtube">
+        Tonton di YouTube
+    </a>
 
 </body>
 </html>
